@@ -1,0 +1,109 @@
+<form action="/person/search" method="GET">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-8 col-xl-8">
+                <div class="row">
+                    <% persons.forEach( function(model) { %>
+                        <div class="col-12 col-sm-6 col-xl-6">
+
+                            <div class="card">
+                                <img class="card-img-top" src="<%= model.image %>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="http://localhost:1337/person/view/<%= model.id%>">
+                                            <%= model.restaurant %>
+                                        </a>
+                                    </h5>
+                                    <b class="card-text" style="color:#8D8B8B;">
+                                                <%= model.title %>
+                                              </b>
+                                    <p class="card-text">
+                                        Coins:
+                                        <%= model.coin %>
+                                    </p>
+                                </div>
+                            </div>
+                            <br>
+
+                        </div>
+                        <% }); %>
+                </div>
+                <div class="col-3 col-sm-3 col-xl-3">
+                    <% const current = Number(req.query.page || 1); 
+                    const qDist = String(req.query.district || "");
+                    const qDate = req.query.date || "";
+                    const qRange = req.query.range||"";
+                    var arr=qRange.split(";");
+                    %>
+
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination" style="width:50%">
+                                <li class="page-item">
+                                    <a class="page-link" href="/person/search/?district=<%=qDist%>&range=<%=qRange%>&date=<%=qDate%>&page=<%= Math.max(current-1, 1) %>">Previous</a>
+                                </li>
+
+                                <% for (i = 1; i <= count; i++) { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="/person/search/?district=<%=qDist%>&range=<%=qRange%>&date=<%=qDate%>&page=<%= i %>">
+                                            <%= i %>
+                                        </a>
+                                    </li>
+                                    <% } %>
+
+                                        <li class="page-item">
+                                            <a class="page-link" href="/person/search/?district=<%=qDist%>&range=<%=qRange%>&date=<%=qDate%>&page=<%= Math.min(current+1, count) %>">Next</a>
+                                        </li>
+                            </ul>
+                        </nav>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-sm-4 col-xl-4">
+                <h4>Search</h4><br>
+                <span>District:</span>
+                     <select class="form-control" id="district" style="width:100%;" name="district">
+                            <option value="hk">HK Island</option>
+                            <option value="kowloon">Kowloon</option>
+                            <option value="nt">New Territories</option>
+                    </select>
+                <br>
+                <label>Coins Range:</label>
+                <input type="text" id="ionden" name="range" /><br>
+                <label>Valid Before:</label><br>
+                <div class="input-group date" data-provide="datepicker"><br>
+                    <input type="date" class="form-control" name="date">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span><br>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-xl-12">
+                    <br>
+                    <button type="submit" style="position: absolute; left: 0;" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#ionden").ionRangeSlider({
+            type: "double",
+            grid: true,
+            min: 0,
+            max: 10000,
+            from: 0,
+            to: 10000,
+            step: 10
+        });
+    </script>
+
+    <script>
+        $("input[type=date]").each(function () {
+            if (this.type != 'date') $(this).datepicker();
+        });
+    </script>
+    <script>
+        $('.datepicker').datepicker();
+    </script>
+
+</form>

@@ -1,0 +1,16 @@
+<div class="row">
+    <h5>Members of this coupon <br /></h5>
+    <table class="table table-hover">
+
+        <% persons.forEach( function(model) { %>
+            <tr>
+                <td>
+                    <b><%= model.role%> :  </b>
+                    <b><%= model.username %></b>
+                </td>
+            </tr>
+            <% }); %>
+
+    </table>
+</div>
+

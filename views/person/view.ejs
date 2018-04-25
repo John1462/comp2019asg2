@@ -1,0 +1,82 @@
+ 
+
+<style>
+    .add{     
+        display: none;
+    }
+</style>
+
+<form action="http://localhost:1337/user/addqpon/<%= req.session.pid %>?pid=<%= persons.id %>" method="POST">
+
+    <div class="row">
+        <div class="col-sm-5 col-12">
+            <div class="card">
+                <img class="card-img-top" src="<%= persons.image %>" alt="Card image cap" height="370" width="280">
+            </div>
+        </div>
+        <div class="col-sm-7 col-12">
+            <div class="card">
+                <table class="table table-hover">
+                    <tr>
+                        <td>
+                            <b><%= persons.restaurant %></b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b><%= persons.title %></b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Coins: &nbsp</b>
+                            <%= persons.coin %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Address: </b>
+                            <%= persons.mall %>,&nbsp
+                                <%= persons.district %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Valid Till: </b>&nbsp
+                            <%= persons.dealvaildtill %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b><%= persons.details %></b>
+                            <!-- <b><%= persons.id %></b>
+                            <b><%= req.session.username%></b>
+                            <b><%= req.session.pid %></b> -->
+                        </td>
+                    </tr>
+
+                    <% persons.isFor.forEach( function(model) { %>
+                        <tr>
+                            <td>
+                                <%= model.id %>
+                            </td>
+                        </tr>
+                        <% }); %>
+
+                            <% persons.isFor.forEach(function(model) { 
+                             if( req.session.pid != model.id) {%>
+                                <button>add</button>
+                                <% }}); %>
+                </table>
+            </div>
+            <div>
+                <br>
+                <button type="submit" class="btn btn-primary add">Add to My Coupons</button>
+            </div>
+
+</form>
+
+<!-- <% persons.isFor.forEach(function(model) { 
+    while( req.session.pid != model.id) {%>
+        <button type="submit" class="btn btn-primary">Add to My Coupons</button>
+ <% break;}}); %> -->

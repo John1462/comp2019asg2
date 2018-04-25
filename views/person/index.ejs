@@ -1,0 +1,33 @@
+<!--index.ejs-->
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">restaurant</th>
+        </tr>
+    </thead>
+    <% persons.forEach( function(model) { %>
+        <tr>
+            <td>
+                <%= model.id %>
+            </td>
+            <td>
+                <%= model.title %>
+            </td>
+            <td>
+                    <a href="http://localhost:1337/person/view/<%= model.id%>"><%= model.restaurant %></a>
+            </td>
+            <td>
+                    <a href="http://localhost:1337/person/delete/<%= model.id%>">Delete</a>
+            </td>
+            <td>
+                    <a href="http://localhost:1337/person/update/<%= model.id%>">Update</a>
+            </td>
+            <td>
+                     <a href="http://localhost:1337/person/showmember/<%= model.id%>">Member</a>
+            </td>
+                    
+        </tr>
+        <% }); %>
+</table>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CS Workshops Lab #1</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+    crossorigin="anonymous">
+  <style>
+    .row {
+      font: left;
+      margin: 10px;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 1px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <body onload="pageLoaded()">
+
+    <div class="row">
+      <div class="col-6 col-md-4 ">
+        <p>HK Island</p>
+      <% hk.forEach( function(model) { %>
+        <div class="card ">
+          <img class="card-img-top" src="<%= model.image %>" height="350" width="280" ">
+          <div class="card-body ">
+            <h5 class="card-title">
+              <a href="http://localhost:1337/person/view/<%= model.id %>">
+                <%= model.restaurant %>
+              </a>
+            </h5>
+            <b>
+              <class="card-text">
+                <%= model.title %>
+            </b>
+            <p class="card-text">
+              Coins:
+              <%= model.coin %>
+            </p>
+          </div>
+          <br>
+        </div>
+        <% }); %>
+      </div>
+
+      <div class="col-6 col-md-4">
+        <p>Kowloon</p>
+        <% kowloon.forEach( function(model) { %>
+          <div class="card ">
+            <img class="card-img-top" src="<%= model.image %>" height="350" width="280" ">
+            <div class="card-body ">
+              <h5 class="card-title">
+                <a href="http://localhost:1337/person/view/<%= model.id %>">
+                  <%= model.restaurant %>
+                </a>
+              </h5>
+              <b>
+                <class="card-text">
+                  <%= model.title %>
+              </b>
+              <p class="card-text">
+                Coins:
+                <%= model.coin %>
+              </p>
+            </div>
+            <br>
+          </div>
+          <% }); %>
+      </div>
+
+      <div class="col-6 col-md-4">
+        <p>New Territories</p>
+        <% nt.forEach( function(model) { %>
+          <div class="card ">
+            <img class="card-img-top" src="<%= model.image %>" height="350" width="280" ">
+            <div class="card-body ">
+              <h5 class="card-title">
+                <a href="http://localhost:1337/person/view/<%= model.id %>">
+                  <%= model.restaurant %>
+                </a>
+              </h5>
+              <b>
+                <class="card-text">
+                  <%= model.title %>
+              </b>
+              <p class="card-text">
+                Coins:
+                <%= model.coin %>
+              </p>
+            </div>
+            <br>
+          </div>
+          <% }); %>
+      </div>
+    </div>
+
+  </body>
+
+</html>

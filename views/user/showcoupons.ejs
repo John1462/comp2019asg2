@@ -1,0 +1,40 @@
+
+
+    <!DOCTYPE html>
+    <html>
+    
+    <body>
+    
+      <body onload="pageLoaded()">
+            <div style="float:left; text-align:left">My Coupons</div>
+            <div style="float:right; text-align:right">Account Balance: <%= req.session.coin%> coins</div>
+            <br>
+        <div class="row">
+            
+          <% user.forEach( function(model) { %>
+            <br>
+            <div class="card col-6 col-md-4">
+              <img class="card-img-top" src="<%= model.image %>" height="350" width="280" >
+              <div class="card-body ">
+                <h5 class="card-title">
+                  <a href="http://localhost:1337/person/view/<%= model.id %>">
+                    <%= model.restaurant %>
+                  </a>
+                </h5>
+                <b>
+                  <class="card-text">
+                    <%= model.title %>
+                </b>
+                <p class="card-text">
+                  Expiry Dates:
+                  <%= model.dealvaildtill %>
+                </p>
+              </div>
+              <br>
+            </div>
+            <% }); %>
+          </div> 
+      </body>
+    
+    </html>
+ 
